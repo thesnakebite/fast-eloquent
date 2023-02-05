@@ -35,7 +35,7 @@
                 </p>
             </div>
             <div class="license">
-                <p>© 2019 Derechos Reservados - Styde Limited</p>
+                <p>© {{ date('Y') }} Derechos Reservados - Styde Limited</p>
             </div>
         </footer>
     </div>
