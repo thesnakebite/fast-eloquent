@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ProductController;
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
@@ -18,11 +19,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/productos', function () {
-    $products = Product::query()
-        ->select(['title', 'slug', 'category_id', 'image']) 
-        ->with('category:id,title,slug')
-        ->paginate();
-
-    return view('products', compact('products'));
+Route::controller(ProductController::class)->prefix('productos')->group(function () {
+    Route::get('/', 'index');
 });
