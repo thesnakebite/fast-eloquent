@@ -12,10 +12,10 @@ class ProductController extends Controller
         $products = Product::query()
             ->select(['title', 'slug', 'category_id', 'image']) 
             ->with('category:id,title,slug')
-            ->when($request->input('categoria', function ($q, $categoryId) {
-                $q->where('id', $categoryId);
-            }))
-            ->paginate();
+            ->when($request->input('categoria'), function ($q, $categoryId) {
+                $q->where('category_id', $categoryId);
+            })
+            ->simplePaginate();
 
         return view('products', compact('products'));
     }
